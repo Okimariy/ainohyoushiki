@@ -53,10 +53,6 @@ const Question02 = (props) => {
   const [anniversaryData, setAnniversaryData] = React.useState(
     new Date("2014-08-18T21:11:54")
   );
-  const handleDateChangeAnniversary = (date) => {
-    setAnniversaryData(date);
-    props.save(date);
-  };
   return (
     <div>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
