@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Together from "./component/Together";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 
-function App() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+const Home = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">
+        <p>愛の標識</p>
+        <Link to="/Together">はじめる</Link>
+      </div>
     </div>
   );
-}
+};
+
+const App = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Router>
+        <AppBar position="static" style={{ background: "pink" }}>
+          <Toolbar>
+            <Typography variant="h6" className={classes.title}>
+              <Link to="">愛の標識</Link>
+            </Typography>
+            <Link to="/Together">はじめる</Link>
+          </Toolbar>
+        </AppBar>
+        <Route exact path="/" component={Home} />
+        <Route path="/Together" component={Together} />
+      </Router>
+    </div>
+  );
+};
 
 export default App;
