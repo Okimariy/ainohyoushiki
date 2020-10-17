@@ -1,6 +1,8 @@
 import React from "react";
 import Together from "./component/Together";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Confirmation from "./component/Together";
+// import { RecoilRoot } from "recoil";
+import { BrowserRouter as Router,  Route, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -43,7 +45,8 @@ const App = () => {
           </Toolbar>
         </AppBar>
         <Route exact path="/" component={Home} />
-        <Route path="/Together" component={Together} />
+          <Route path="/Together" component={Together} />
+          <Route path="/Confirmation" component={Confirmation} />
       </Router>
     </div>
   );
