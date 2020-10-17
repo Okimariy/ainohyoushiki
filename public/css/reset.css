@@ -109,6 +109,7 @@ legend {
 }
 progress {
   vertical-align: baseline;
+  /* color: #264eff; */
 }
 textarea {
   overflow: auto;
@@ -144,4 +145,14 @@ template {
 }
 [hidden] {
   display: none;
+}
+@font-face {
+  font-family: "851Gkktt";
+  src: url("../font/851Gkktt_005.eot?") format("eot"),
+    url("../font/851Gkktt_005.woff2") format("woff2"),
+    url("../font/851Gkktt_005.woff") format("woff"),
+    url("../font/851Gkktt_005.ttf") format("truetype");
+}
+* {
+  font-family: "851Gkktt";
 }

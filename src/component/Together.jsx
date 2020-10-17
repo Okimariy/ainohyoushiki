@@ -83,7 +83,7 @@ const Together = (props) => {
   // const [allData, SetAllData] = useRecoilState(AllState);
   // ニックネームと日付のstate
   const [allData, SetAllData] = useState({
-    nickname: "default",
+    nickname: "",
     date: new Date("2020-01-01T21:11:54"),
   });
   // プレゼントのstate
@@ -353,10 +353,14 @@ const Together = (props) => {
           </div>
         </div>
         <div style={Object.assign({}, styles.slide, styles.slide5)}>
-          <p style={{color:"#000"}}>allDataの確認画面</p>
+          {/* <p style={{color:"#000"}}>allDataの確認画面</p> */}
           {/* map関数の処理 */}
 
-          {allData.map((x, i) => <li key={i}>{x}</li>)}
+          <ul>
+            <li>{allData.nickname}</li>
+            <li>{(JSON.stringify(allData.date))}</li>
+          </ul>
+
           {/* <ul>
             {allData.map(x => (
               <li key={x.id}>{x.date}</li>

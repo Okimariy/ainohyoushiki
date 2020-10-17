@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import {HeaderTitle,HeaderLink} from './component/StylePage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,12 +37,13 @@ const App = () => {
   return (
     <div className={classes.root}>
       <Router>
-        <AppBar position="static" style={{ background: "pink" }}>
+        <AppBar position="static" style={{ background: "#ff5757" }}>
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              <Link to="">愛の標識</Link>
+              <HeaderTitle href="#">愛の標識</HeaderTitle>
+              {/* <Link to="/">愛の標識</Link> */}
             </Typography>
-            <Link to="/Together">はじめる</Link>
+            <HeaderLink to="/Together">はじめる</HeaderLink>
           </Toolbar>
         </AppBar>
         <Route exact path="/" component={Home} />
