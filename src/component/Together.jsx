@@ -9,6 +9,13 @@ import {
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import {
+  VerificationLink,
+  SliderWrapar,
+  SliderWraparBtnBox,
+  SliderWraparBtnBox__item,
+  SliderWraparBtnBox__item__list} from './StylePage';
+  import DeleteIcon from '@material-ui/icons/Delete';
 // import format from "date-fns/format";
 // import firebase from "../config/firebase";
 // import { RecoilRoot, atom, useRecoilState } from "recoil";
@@ -30,30 +37,13 @@ const useStyles = makeStyles((theme) => ({
 
 const styles = {
   slide: {
-    padding: 15,
-    minHeight: 100,
+    minHeight: 90,
     color: "#fff",
   },
   slide1: {
-    backgroundColor: "#FEA900",
-  },
-  slide2: {
-    backgroundColor: "#FEA900",
-  },
-  slide3: {
-    backgroundColor: "#FEA900",
-  },
-  slide4: {
-    backgroundColor: "#FEA900",
-  },
-  slide5: {
-    backgroundColor: "#FEA900",
-  },
-  slide6: {
-    backgroundColor: "#FEA900",
-  },
-  slide7: {
-    backgroundColor: "#FEA900",
+    backgroundColor: "#e55f50",
+    height:"80vh",
+    padding:"0"
   },
 };
 
@@ -94,6 +84,24 @@ const Together = (props) => {
   // 生活費のstate
   const [CostData, SetCostData] = useState([CostDefault]);
   const [CostsData, SetCostsData] = useState([{ costName: "", costMoney: "" }]);
+
+// 全てのデータが集まるstate
+const [allsState,SetallsState]=useState({
+  data1:{
+    nickname: "",
+    date: new Date("2020-01-01T21:11:54")
+  },
+  data2:[
+    {
+      presentName: "", presentMoney: ""
+    }
+  ],
+  data3:[
+    {
+      costName: "", costMoney: ""
+    }
+  ],
+})
 
   // 名前onChange
   const onChange = (e) => {
@@ -191,6 +199,34 @@ const Together = (props) => {
     );
   };
 
+  //-----------------------------------------------------------------//
+  // すべてのデータが入る場所
+  //-----------------------------------------------------------------//
+
+
+  const RegistrationData = () => {
+    console.log(allsState);
+    SetallsState([
+      ...allsState,{
+        data1:{
+          nickname: "",
+          date: new Date("2020-01-01T21:11:54")
+        },
+        data2:[
+          {
+            presentName: "", presentMoney: ""
+          }
+        ],
+        data3:[
+          {
+            costName: "", costMoney: ""
+          }
+        ],
+      }
+    ])
+
+  }
+
   console.log(allData);
   console.log(presentData);
   console.log(CostData);
@@ -205,7 +241,7 @@ const Together = (props) => {
         index={index}
       >
         <div style={Object.assign({}, styles.slide, styles.slide1)}>
-          <div>
+          <SliderWrapar>
             <form className={classes.root} noValidate autoComplete="off">
               <p>ニックネーム</p>
               <TextField
@@ -221,10 +257,10 @@ const Together = (props) => {
                 }}
               />
             </form>
-          </div>
+          </SliderWrapar>
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide2)}>
-          <div>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
+          <SliderWrapar>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 name="date"
@@ -240,10 +276,10 @@ const Together = (props) => {
                 }}
               />
             </MuiPickersUtilsProvider>
-          </div>
+          </SliderWrapar>
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide3)}>
-          <div>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
+          <SliderWrapar>
             <ul>
               <li>
                 <TextField
@@ -289,16 +325,16 @@ const Together = (props) => {
                     {x.presentName}
                     {x.presentMoney}
                     <Button href="" onClick={() => deleteTask(x)}>
-                      削除するっぺ
+                      <DeleteIcon />
                     </Button>
                   </ListItem>
                 ))}
               </List>
             </div>
-          </div>
+          </SliderWrapar>
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide4)}>
-          <div>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
+          <SliderWrapar>
             <ul>
               <li>
                 <TextField
@@ -344,46 +380,23 @@ const Together = (props) => {
                     {x.costName}
                     {x.costMoney}
                     <Button href="" onClick={() => deleteCost(x)}>
-                      削除するっぺ
+                      <DeleteIcon />
                     </Button>
                   </ListItem>
                 ))}
               </List>
             </div>
-          </div>
+          </SliderWrapar>
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide5)}>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
           {/* <p style={{color:"#000"}}>allDataの確認画面</p> */}
           {/* map関数の処理 */}
-
-          <ul>
+          <ul style={{padding:"100px"}}>
             <li>{allData.nickname}</li>
             <li>{(JSON.stringify(allData.date))}</li>
           </ul>
-
-          {/* <ul>
-            {allData.map(x => (
-              <li key={x.id}>{x.date}</li>
-            ))}
-          </ul> */}
-          {/* <ul>
-            {
-              allData.length > 0 ? (
-                "<div>no items</div>"
-              ):(
-                allData.map(x => <li>{x}</li>)
-              )
-            }
-          </ul> */}
-              {/* <List className={classes.root} component="ul">
-                {allData.map((x) => (
-                  <ListItem key={x.nickname} component="li">
-                    {x.nickname}
-                  </ListItem>
-                ))}
-              </List> */}
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide6)}>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <p style={{color:"#000"}}>presentDataの確認画面</p>
           <List className={classes.root} component="ul">
                 {presentData.map((x) => (
@@ -394,7 +407,7 @@ const Together = (props) => {
                 ))}
           </List>
         </div>
-        <div style={Object.assign({}, styles.slide, styles.slide7)}>
+        <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <p style={{color:"#000"}}>CostDataの確認画面</p>
           <List className={classes.root} component="ul">
                 {CostData.map((x) => (
@@ -406,8 +419,8 @@ const Together = (props) => {
           </List>
         </div>
       </SwipeableViews>
-      <div className="btnBox">
-        <ul>
+      <SliderWraparBtnBox className="btnBox">
+        <SliderWraparBtnBox__item>
           <li>
             {index <= 0 ? (
               ""
@@ -452,84 +465,74 @@ const Together = (props) => {
           {index !== 3 ? (
               ""
             ) : (
-              <Button
+              <VerificationLink
                 variant="contained"
-                color="#000"
-                style={{
-                  background: "#000",
-                  border: "solid 1px #fff",
-                  color: "#fff",
-                }}
                 onClick={() => {
                   setIndex(++index);
                 }}
               >
                 確認画面に進む
-              </Button>
+              </VerificationLink>
             )}
           </li>
           <li>
           {index !== 4 ? (
               ""
             ) : (
-              <Button
+              <VerificationLink
                 variant="contained"
-                color="#eee"
-                style={{
-                  background: "#eee",
-                  border: "solid 1px #fff",
-                  color: "#fff",
-                }}
+                // onClick={alladd}
                 onClick={() => {
                   setIndex(++index);
+                  // SetallsState({
+                  //   ...allsState
+                  // });
                 }}
+                // onClick={(event) => { func1(); func2();}}
               >
                 allDataを登録する
-              </Button>
+              </VerificationLink>
             )}
           </li>
           <li>
           {index !== 5 ? (
               ""
             ) : (
-              <Button
+              <VerificationLink
                 variant="contained"
-                color="#eee"
-                style={{
-                  background: "#eee",
-                  border: "solid 1px #fff",
-                  color: "#fff",
-                }}
                 onClick={() => {
                   setIndex(++index);
+                  // SetallsState({
+                  //   ...allsState
+                  // });
+                  
                 }}
+                // onClick={alladd}
               >
                 presentDataを登録する
-              </Button>
+              </VerificationLink>
             )}
           </li>
           <li>
           {index !== 6 ? (
               ""
             ) : (
-              <Button
+              <VerificationLink
                 variant="contained"
-                color="#eee"
-                style={{
-                  background: "#eee",
-                  border: "solid 1px #fff",
-                  color: "#fff",
-                }}
                 onClick={() => {
                   setIndex(++index);
+                  // SetallsState({
+                  //   ...allsState
+                  // });
                 }}
+                // onClick={alladd}
               >
                 CostDataを登録する
-              </Button>
+              </VerificationLink>
             )}
           </li>
-        </ul>
-      </div>
+        </SliderWraparBtnBox__item>
+      </SliderWraparBtnBox>
     </div>
   );
 };
